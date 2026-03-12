@@ -1522,7 +1522,7 @@ Include one object per card. Use empty string "" for any field not found on that
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method:'POST',
-        headers:{ 'Content-Type':'application/json' },
+        headers:{ headers:{    'Content-Type':'application/json',   'x-api-key': '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',   'anthropic-version': '2023-06-01' }, },
         body: JSON.stringify({
           model:'claude-sonnet-4-20250514',
           max_tokens:1200,
