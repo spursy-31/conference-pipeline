@@ -1562,7 +1562,7 @@ Include one object per card. Use empty string "" for any field not found on that
       setResults(base);
       setStage('review');
     } catch(e) {
-      setErrMsg('AI processing failed. Check your connection and try again. (' + e.message + ')');
+      setErrMsg('Error: ' + e.message + ' | Status: ' + (e.status||'none') + ' | ' + e.toString());
       setStage('error');
     }
   };
