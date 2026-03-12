@@ -1877,7 +1877,7 @@ function App() {
       </div>
 
       {/* Modals */}
-      {showScanner && <ScannerModal onClose={()=>setShowScanner(false)} onSave={handleScanSave} />}
+      {showScanner && <ScannerModal onClose={()=>setShowScanner(false)} onSave={handleScanSave} apiKey={apiKey} />}
       {showImport  && <CSVImportModal onClose={()=>setShowImport(false)} onImport={handleImport} existingContacts={contacts} />}
     </div>
   );
