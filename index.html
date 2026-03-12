@@ -1500,10 +1500,15 @@ function ScannerModal({ onClose, onSave, apiKey }) {
     const video  = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
-    canvas.width  = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    const data = canvas.toDataURL('image/jpeg', 0.92).split(',')[1];
+    const MAX = 1280;
+    let w = video.videoWidth;
+    let h = video.videoHeight;
+    if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+    if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; }
+    canvas.width  = w;
+    canvas.height = h;
+    canvas.getContext('2d').drawImage(video, 0, 0, w, h);
+    const data = canvas.toDataURL('image/jpeg', 0.7).split(',')[1];
     setImgData(data);
     stopCamera();
     setStage('preview');
