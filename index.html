@@ -1467,7 +1467,7 @@ function CSVImportModal({ onClose, onImport, existingContacts }) {
 }
 
 // ── SCANNER MODAL ─────────────────────────────────────────────────────────────
-function ScannerModal({ onClose, onSave }) {
+function ScannerModal({ onClose, onSave, apiKey }) {
   // stages: 'choose' | 'capturing' | 'preview' | 'processing' | 'review' | 'error'
   const [stage, setStage]       = useState('choose');
   const [scanType, setScanType] = useState(null); // 'card' | 'linkedin'
