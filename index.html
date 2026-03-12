@@ -1524,8 +1524,7 @@ Include one object per card. Use empty string "" for any field not found on that
         method:'POST',
        headers:{
           'Content-Type':'application/json',
-          'x-api-key': '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',
-          'anthropic-version': '2023-06-01'
+          ''x-api-key': apiKey,
         },
         body: JSON.stringify({
           model:'claude-sonnet-4-20250514',
@@ -1755,6 +1754,7 @@ function App() {
   const [tab, setTab]             = useState('dashboard');
   const [showScanner, setShowScanner] = useState(false);
   const [showImport,  setShowImport]  = useState(false);
+ const [apiKey, setApiKey] = useState('');
 
   useEffect(() => {
     // Signal splash screen that React is ready — burst fires after delay
@@ -1799,6 +1799,26 @@ function App() {
 
   return (
     <div style={{ display:'flex', height:'100vh', overflow:'hidden' }}>
+
+     {!apiKey && (
+  <div style={{ position:'fixed', inset:0, background:'rgba(15,23,42,0.7)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:400, backdropFilter:'blur(8px)', padding:24 }}>
+    <div style={{ background:'var(--surface)', borderRadius:20, padding:32, width:'100%', maxWidth:400, boxShadow:'var(--shadow-lg)', textAlign:'center' }}>
+      <div style={{ fontSize:48, marginBottom:16 }}>🔑</div>
+      <h2 style={{ fontFamily:'var(--font-display)', fontSize:22, marginBottom:8 }}>Enter API Key</h2>
+      <p style={{ color:'var(--text2)', fontSize:14, marginBottom:24, lineHeight:1.6 }}>Paste your Anthropic API key to enable business card scanning. It's never saved or stored.</p>
+      <input
+        type="password"
+        placeholder="sk-ant-api03-..."
+        onKeyDown={e => { if(e.key==='Enter' && e.target.value.startsWith('sk-')) setApiKey(e.target.value); }}
+        style={{ width:'100%', background:'#f8faff', border:'1px solid var(--border)', borderRadius:10, padding:'12px 14px', fontSize:14, color:'var(--text)', outline:'none', marginBottom:16, textAlign:'center' }}
+        id="apiKeyInput"
+      />
+      <Btn onClick={()=>{ const v=document.getElementById('apiKeyInput').value; if(v.startsWith('sk-')) setApiKey(v); }} style={{ width:'100%', justifyContent:'center' }}>
+        Unlock App
+      </Btn>
+    </div>
+  </div>
+)}
       {/* Desktop sidebar */}
       <div className="desktop-sidebar" style={{ width:220, background:'var(--surface)', borderRight:'1px solid var(--border)', padding:'24px 12px', flexDirection:'column', flexShrink:0, boxShadow:'2px 0 8px rgba(15,23,42,0.04)' }}>
         <div style={{ paddingLeft:8, marginBottom:32 }}>
