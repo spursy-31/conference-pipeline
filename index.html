@@ -1525,7 +1525,8 @@ If you cannot detect a LinkedIn QR code, return: {"type":"unknown"}`
 Include one object per card. Use empty string "" for any field not found on that card. Do not guess or invent data.`;
 
     try {
-      const res = await fetch('https://sparkling-term-1052.justin-ryan.workers.dev', {
+      if (!apiKey) { setErrMsg('No API key found — please reload the app and enter your key.'); setStage('error'); return; }
+const res = await fetch('https://sparkling-term-1052.justin-ryan.workers.dev', {
         method:'POST',
        headers:{
   'Content-Type':'application/json',
